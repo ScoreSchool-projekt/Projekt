@@ -1,4 +1,14 @@
-<h1>November 24. éjfélig</h1>
+<h1>Vizsgaremek</h1>
+<h3>Elvárások</h3>
+<ol>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>BOOSTRAP - SM, LG</li>
+  <li>Framework - Angular, Vue.js</li>
+  <li>Források - fele kép legalább saját, a szöveg pedig teljesen</li>
+</ol>
+
+<h2>November 24. éjfélig</h1>
 <ul>
   <li> Single Player projekt, amit githubra kell feltölteni és a projekt linkjét a sandor412@gmail.com-ra elküldeni </li>
   <li> UML diagram kell az adatbázisról (akár draw.io-t használva) + egy PDF, amiben minden adatbázis specifikáció benne van </li>
