@@ -1,0 +1,81 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "projekt",
+    "collectionId": "bb6cf330-ff2b-48ba-b294-8e6682907946",
+    "dateExported": "2025-02-09T18:12:47.043Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "fe8aabca-f4e7-4823-bd92-3e2975bb2df4",
+            "colId": "bb6cf330-ff2b-48ba-b294-8e6682907946",
+            "containerId": "",
+            "name": "GET - minden adat",
+            "url": "http://localhost:3000/csapat",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2025-02-09T18:00:31.253Z",
+            "modified": "2025-02-09T18:01:51.245Z",
+            "headers": []
+        },
+        {
+            "_id": "f0931413-492f-47d4-bf12-cc35b2638bf8",
+            "colId": "bb6cf330-ff2b-48ba-b294-8e6682907946",
+            "containerId": "",
+            "name": "GET - egy adat",
+            "url": "http://localhost:3000/torna/1",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2025-02-09T18:02:01.117Z",
+            "modified": "2025-02-09T18:02:36.606Z",
+            "headers": []
+        },
+        {
+            "_id": "109d68a7-ebb8-4229-a9f8-c2247855cab9",
+            "colId": "bb6cf330-ff2b-48ba-b294-8e6682907946",
+            "containerId": "",
+            "name": "POST",
+            "url": "http://localhost:3000/profil",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2025-02-09T18:02:48.693Z",
+            "modified": "2025-02-09T18:04:11.998Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\":6,\n  \"email\": \"proba\",\n  \"jelszo\":\"proba\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "43827294-0c8d-4648-826c-c717e0c076cd",
+            "colId": "bb6cf330-ff2b-48ba-b294-8e6682907946",
+            "containerId": "",
+            "name": "PUT",
+            "url": "http://localhost:3000/profil/6",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2025-02-09T18:04:23.214Z",
+            "modified": "2025-02-09T18:12:07.261Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"proba6@gmail.com\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "fe4e0d03-0e9c-41b5-ac65-ae9916afbd06",
+            "colId": "bb6cf330-ff2b-48ba-b294-8e6682907946",
+            "containerId": "",
+            "name": "DELETE",
+            "url": "http://localhost:3000/profil/6",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2025-02-09T18:12:16.306Z",
+            "modified": "2025-02-09T18:12:22.173Z",
+            "headers": []
+        }
+    ],
+    "ref": "z-oayFATGmSRCSy3Cx9NErsq537llIhRcTuW-9njMvyMiq0M5KrrGoWNEjfwY3B-k3uEl_RQ7zFJT9NWHQF9hQ"
+}
