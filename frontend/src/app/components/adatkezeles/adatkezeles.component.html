@@ -1,0 +1,473 @@
+<nav class="navbar navbar-expand-lg">
+  <img src="logo.svg" alt="Logó" height="120rem" class="logok">
+  <a href="">
+    <h2>ScoreSchool</h2>
+  </a>
+  <button class="navbar-toggler" type="button" (click)="toggleMenu()" aria-label="Menü megnyitása/zárása">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" [class.show]="isMenuOpen">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link " href="kereses">
+          <h5>Keresés</h5>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="adatkezeles">
+          <h5>Adatkezelés</h5>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="statisztika">
+          <h5>Statisztika</h5>
+        </a>
+      </li>
+    </ul>
+    <div class="d-flex justify-content-end w-100">
+      <button (click)="kijelentkezes()" class="border-0 bg-transparent text-end">
+        <img src="kijelentkezes.svg" height="50rem" class="pb-2">
+      </button>
+    </div>
+
+  </div>
+</nav>
+
+
+<div class="container-fluid tobbi-oldal ">
+  <div class="row rounded-4 p-4 w-100 ">
+
+    <div class="col-lg-4 col-12 fs-5">
+      <button (click)="Form()" class="btn">
+        <img src="uj.svg" height="30rem" />
+      </button>
+      <div *ngFor="let t of torna">
+        <div (click)="Lenyitas('torna', t.id)">
+          <h4>{{ t.tornaneve }}</h4>
+          <button (click)="torles('torna', t.id)" class="btn">
+            <img src="torles.svg">
+          </button>
+        </div>
+        <div *ngIf="Nyitva('torna', t.id)">
+          
+          <h5 (click)="Lenyitas('csapatok', t.id)" class="ps-5">
+            Csapatok
+          </h5>
+          <h5 (click)="Lenyitas('jatekosok', t.id)" class="ps-5">
+            Játékos
+          </h5>
+          <h5 (click)="Lenyitas('csoportok', t.id)" class="ps-5">
+            Csoportok
+          </h5>
+          <h5 (click)="Lenyitas('meccsek', t.id)" class="ps-5">
+            Meccsek
+          </h5>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-lg-8 col-12">
+
+      <div *ngIf="tornaform===true" class="result-box bg-dark mt-2 mx-1 p-3 rounded row">
+        <div class="col-6">
+          <label for="tornaneve" class="form-label">Torna neve:</label>
+          <input type="text" [(ngModel)]="kapotttorna.tornaneve" class="form-control bg-dark">
+        </div>
+        <div class="col-6">
+          <label for="tornaeve" class="form-label">Év:</label>
+          <input type="number" [(ngModel)]="kapotttorna.ev" class="form-control bg-dark">
+        </div>
+        <div class="col-6">
+          <label for="csoportokszama" class="form-label">Csoportok száma:</label>
+          <input type="number" min="1" [(ngModel)]="kapotttorna.csoportokszama" class="form-control bg-dark">
+        </div>
+        <div class="col-6">
+          <label for="csapatokszama" class="form-label">Csapatok száma:</label>
+          <input type="number" min="1" [(ngModel)]="kapotttorna.csapatokszama" class="form-control bg-dark">
+        </div>
+        <div class="col-6">
+          <label for="gyoztescsapat" class="form-label">Győztes csapat:</label>
+          <input type="text" [(ngModel)]="kapotttorna.gyoztescsapat" class="form-control bg-dark">
+        </div>
+        <div class="col-12 text-end mt-3">
+          <button (click)="TornaHozzaadas()" class="btn btn-success">Mentés</button>
+        </div>
+      </div>
+
+      <div *ngFor="let t of torna; trackBy: trackByMeccs">
+
+        <div *ngIf="Nyitva('csapatok', t.id)">
+
+          <button (click)="UjLenyitas(t.id)" class="btn btn-dark mx-1">
+            <img src="uj.svg" height="30rem">
+          </button>
+
+          <div *ngIf="FormOpen[t.id]" class="result-box bg-dark mt-2 mx-1 p-3 rounded row">
+            <div class="col-6">
+              <label for="csapatneve" class="form-label">Csapatneve:</label>
+              <input type="text" [(ngModel)]="kapottcsapat.csapatneve" class="form-control bg-dark">
+            </div>
+            <div class="col-6">
+              <label for="gyozelmek" class="form-label">Győzelmek:</label>
+              <input type="number" [(ngModel)]="kapottcsapat.gyozelmek" class="form-control bg-dark">
+            </div>
+            <div class="col-6">
+              <label for="veresegek" class="form-label">Vereségek:</label>
+              <input type="number" [(ngModel)]="kapottcsapat.veresegek" class="form-control bg-dark">
+            </div>
+            <div class="col-6">
+              <label for="dontetlenek" class="form-label">Döntetlenek:</label>
+              <input type="number" [(ngModel)]="kapottcsapat.dontetlenek" class="form-control bg-dark">
+            </div>
+            <div class="col-12 text-end mt-3">
+              <button (click)="CsapatHozzaadas(t.id)" class="btn btn-success">Mentés</button>
+            </div>
+          </div>
+
+
+          <div *ngFor="let cs of CsapatokTornaAlapjan(t.id)"
+            class="result-box bg-dark mt-2 mx-1 p-3 rounded row align-items-center">
+            <!-- Csapat neve -->
+            <div class="col-12">
+              <p class="fw-bold fs-5">{{ cs.csapatneve }}</p>
+            </div>
+
+            <!-- Statisztikák -->
+            <div class="col-6">
+              <p class="fs-6">Győzelmek: {{ cs.gyozelmek }}</p>
+            </div>
+            <div class="col-6">
+              <p class="fs-6">Vereségek: {{ cs.veresegek }}</p>
+            </div>
+            <div class="col-6">
+              <p class="fs-6">Döntetlenek: {{ cs.dontetlenek }}</p>
+            </div>
+
+            <!-- Műveleti gombok -->
+            <div class="col-6 text-end">
+              <button (click)="torles('csapat', cs.id)" class="btn">
+                <img src="torles.svg" alt="Törlés" />
+              </button>
+              <button (click)="ModositasLenyitas(cs.id)" class="btn">
+                <img src="modositas.svg" alt="Módosítás" />
+              </button>
+            </div>
+
+            <!-- Módosítási űrlap -->
+            <div *ngIf="modositandoCsapatId === cs.id" class="col-12 mt-2">
+              <div class="row">
+                <div class="col-md-6">
+                  <label class="form-label">Győzelmek</label>
+                  <input type="number" [(ngModel)]="modositandocsapat.gyozelmek" class="form-control bg-dark">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Vereségek</label>
+                  <input type="number" [(ngModel)]="modositandocsapat.veresegek" class="form-control  bg-dark">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Döntetlenek</label>
+                  <input type="number" [(ngModel)]="modositandocsapat.dontetlenek" class="form-control  bg-dark">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Csapat neve</label>
+                  <input type="text" [(ngModel)]="modositandocsapat.csapatneve" class="form-control  bg-dark">
+                </div>
+                <div class="col-12 text-center mt-2">
+                  <button (click)="modositascsapat(t.id, cs.id)" class="btn btn-success">Mentés</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="Nyitva('jatekosok', t.id)">
+
+          <button (click)="UjLenyitas(t.id)" class="btn btn-dark mx-1">
+            <img src="uj.svg" height="30rem">
+          </button>
+
+          <div *ngIf="FormOpen[t.id]" class="result-box bg-dark mt-2 mx-1 p-3 rounded row">
+            <div class="col-6">
+              <label for="jatekos" class="form-label">Játékos neve:</label>
+              <input type="text" [(ngModel)]="kapottjatekos.nev" class="form-control bg-dark">
+            </div>
+            <div class="col-6">
+              <label class="form-label">Csapat neve:</label>
+              <select [(ngModel)]="kapottjatekos.csapatid" class="form-select bg-dark">
+                <option *ngFor="let csapat of CsapatokTornaAlapjan(t.id)" [value]="csapat.id">
+                  {{ csapat.csapatneve }}
+                </option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="golokszama" class="form-label">Gólok száma:</label>
+              <input type="number" [(ngModel)]="kapottjatekos.golokszama" class="form-control bg-dark">
+            </div>
+            <div class="col-6">
+              <label for="sárgalapok" class="form-label">Sárga lapok száma:</label>
+              <input type="number" [(ngModel)]="kapottjatekos.sargalapok" class="form-control bg-dark">
+            </div>
+            <div class="col-6">
+              <label for="piroslapok" class="form-label">Piros lapok száma:</label>
+              <input type="number" [(ngModel)]="kapottjatekos.piroslapok" class="form-control bg-dark">
+            </div>
+            <div class="col-12 text-end mt-3">
+              <button (click)="JatekosHozzaadas(t.id)" class="btn btn-success">Mentés</button>
+            </div>
+          </div>
+
+
+          <div *ngFor="let j of JatekosTornaAlapjan(t.id);trackBy: trackByJatekos"
+            class="result-box bg-dark mt-2 mx-1 p-3 rounded row align-items-center">
+            <!-- Csapat neve -->
+            <div class="col-12">
+              <p class="fw-bold fs-5">{{ j.nev }}</p>
+            </div>
+            <div class="col-6">
+              <p class="fs-5">Csapata: {{ j.csapat_nev }}</p>
+            </div>
+            <div class="col-6">
+              <p class="fs-5">Gólok száma: {{ j.golokszama }}</p>
+            </div>
+            <div class="col-6">
+              <p class="fs-5">Sárga lapok száma: {{ j.sargalapok }}</p>
+            </div>
+            <div class="col-6">
+              <p class="fs-5">Piros lapok száma: {{ j.piroslapok }}</p>
+            </div>
+
+
+            <!-- Műveleti gombok -->
+            <div class="col-12 text-end">
+              <button (click)="torles('jatekos', j.id)" class="btn">
+                <img src="torles.svg" alt="Törlés" />
+              </button>
+              <button (click)="ModositasLenyitasjatekos(j.id)" class="btn">
+                <img src="modositas.svg" alt="Módosítás" />
+              </button>
+            </div>
+
+            <!-- Módosítási űrlap -->
+            <div *ngIf="modositandoJatekosId === j.id" class="col-12 mt-2">
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <label class="form-label">Gólok</label>
+                  <input type="number" [(ngModel)]="modositandojatekos.golok" class="form-control bg-dark">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Sárga lapok</label>
+                  <input type="number" [(ngModel)]="modositandojatekos.sargalapok" class="form-control bg-dark">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Piros lapok</label>
+                  <input type="number" [(ngModel)]="modositandojatekos.piroslapok" class="form-control bg-dark">
+                </div>
+                <div class="col-12 text-center mt-2">
+                  <button (click)="modositasjatekos( j.id)" class="btn btn-success">Mentés</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+
+        <div *ngIf="Nyitva('csoportok', t.id)">
+
+          <button (click)="UjLenyitas(t.id)" class="btn btn-dark mx-1">
+            <img src="uj.svg" height="30rem">
+          </button>
+
+          <div *ngIf="FormOpen[t.id]" class="result-box bg-dark mt-2 mx-1 p-3 rounded row">
+            <div class="col-6">
+              <label for="csoport_id" class="form-label">Csoport id:</label>
+              <input type="number" [(ngModel)]="kapottcsoport.csoportid" class="form-control bg-dark">
+            </div>
+            <div class="col-6">
+              <label class="form-label">Csapat neve:</label>
+              <select [(ngModel)]="kapottcsoport.csapat" class="form-select bg-dark">
+                <option *ngFor="let csapat of CsapatokTornaAlapjan(t.id)" [value]="csapat.id">
+                  {{ csapat.csapatneve }}
+                </option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="kapottgolok" class="form-label">Kapott gólok:</label>
+              <input type="number" [(ngModel)]="kapottcsoport.kapottgolok" class="form-control bg-dark">
+            </div>
+            <div class="col-6">
+              <label for="rugottgolok" class="form-label">Rúgott gólok:</label>
+              <input type="number" [(ngModel)]="kapottcsoport.rugottgolok" class="form-control bg-dark">
+            </div>
+            <div class="col-6">
+              <label for="pontok" class="form-label">Pontok:</label>
+              <input type="number" [(ngModel)]="kapottcsoport.pontok" class="form-control bg-dark">
+            </div>
+            <div class="col-12 text-end mt-3">
+              <button (click)="CsoportHozzaadas(t.id)" class="btn btn-success">Mentés</button>
+            </div>
+          </div>
+
+          <div *ngFor="let cs of CsoportokTornaAlapjan(t.id);trackBy: trackByCsoport"
+            class="result-box bg-dark mt-2 mx-1 p-3 rounded row align-items-center">
+            <table class="text-center">
+              <tr class="fs-5">
+                <th title="Csoport id">Id</th>
+                <th title="Csapat">Csapatok</th>
+                <th title="Győzelmek">Gy</th>
+                <th title="Döntetlenek">D</th>
+                <th title="Vereségek">V</th>
+                <th title="Gólarány">G</th>
+                <th title="Gólkülönbség">GK</th>
+                <th title="Pontok">P</th>
+              </tr>
+              <tr>
+                <td class="fs-6" title="Csoport id">{{cs.csoportid}}</td>
+                <td class="fs-6" title="Csapat">{{cs.csapat_nev}}</td>
+                <td class=" fs-6" title="Győzelmek">{{cs.gyozelmek}}</td>
+                <td class=" fs-6" title="Döntetlenek">{{cs.dontetlenek}}</td>
+                <td class=" fs-6" title="Vereségek">{{cs.veresegek}}</td>
+                <td class=" fs-6" title="Rúgott:Kapott">{{cs.rugottgolok}}:{{cs.kapottgolok}}</td>
+                <td class=" fs-6" title="Gólkülönbség">{{cs.golkulonbseg}}</td>
+                <td class=" fs-6" title="Pontok">{{cs.pontok}}</td>
+              </tr>
+            </table>
+
+
+            <!-- Műveleti gombok -->
+            <div class="col-12 text-end">
+              <button (click)="torles('csoport', cs.id)" class="btn">
+                <img src="torles.svg" alt="Törlés" />
+              </button>
+              <button (click)="ModositasLenyitascsoport(cs.id)" class="btn">
+                <img src="modositas.svg" alt="Módosítás" />
+              </button>
+            </div>
+
+            <!-- Módosítási űrlap -->
+            <div *ngIf="modositandoCsoportId === cs.id" class="col-12 mt-2">
+
+
+
+
+
+              <div class="row">
+                <div class="col-md-6">
+                  <label class="form-label">Kapott gyozelmek</label>
+                  <input type="number" [(ngModel)]="modositandocsoport.kapottgolok" class="form-control bg-dark">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Rúgott gólok</label>
+                  <input type="number" [(ngModel)]="modositandocsoport.rugottgolok" class="form-control  bg-dark">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Pontok</label>
+                  <input type="number" [(ngModel)]="modositandocsoport.pontok" class="form-control  bg-dark">
+                </div>
+                <div class="col-12 text-center mt-2">
+                  <button (click)="modositascsoport( cs.id)" class="btn btn-success">Mentés</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <div *ngIf="Nyitva('meccsek', t.id)">
+          <button (click)="UjLenyitas(t.id)" class="btn btn-dark mx-1">
+            <img src="uj.svg" height="30rem">
+          </button>
+
+          <div *ngIf="FormOpen[t.id]" class="result-box bg-dark mt-2 mx-1 p-3 rounded row">
+            <div class="col-6">
+              <label class="form-label">Csapat 1:</label>
+              <select [(ngModel)]="kapottmeccs.csapat1" class="form-select bg-dark">
+                <option *ngFor="let csapat of CsapatokTornaAlapjan(t.id)" [value]="csapat.id">
+                  {{ csapat.csapatneve }}
+                </option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label class="form-label">Csapat 2:</label>
+              <select [(ngModel)]="kapottmeccs.csapat2" class="form-select bg-dark">
+                <option *ngFor="let csapat of CsapatokTornaAlapjan(t.id)" [value]="csapat.id">
+                  {{ csapat.csapatneve }}
+                </option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label class="form-label">1. csapat góljai:</label>
+              <input type="number" [(ngModel)]="kapottmeccs.cs1gol" class="form-control bg-dark">
+            </div>
+            <div class="col-6">
+              <label class="form-label">2. csapat góljai:</label>
+              <input type="number" [(ngModel)]="kapottmeccs.cs2gol" class="form-control bg-dark">
+            </div>
+            <div class="col-6">
+              <label class="form-label">Dátum:</label>
+              <input type="date" [(ngModel)]="kapottmeccs.datum" class="form-control bg-dark">
+            </div>
+            <div class="col-12 text-end mt-3">
+              <button (click)="MeccsHozzaadas(t.id)" class="btn btn-success">Mentés</button>
+            </div>
+          </div>
+
+          <div *ngFor="let m of MeccsekTornaAlapjan(t.id); trackBy: trackByMeccs"
+            class="result-box bg-dark mt-2 mx-1 p-3 rounded row">
+
+            <div class="col-12">
+              <div class="row">
+                <div class="col-3 text-white">
+                  <p class="fs-5">Csapat neve</p>
+                </div>
+                <div class="col-3 text-white text-center">
+                  <p class="fs-5">Gólok száma</p>
+                </div>
+                <div class="col-3 text-white text-center">
+                  <p class="fs-5">Gólok száma</p>
+                </div>
+                <div class="col-3 text-white">
+                  <p class="fs-5">Csapat neve</p>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col text-white fs-6">{{ m.csapat1_nev }}</div>
+                <div class="col text-white text-center fs-6">{{ m.cs1gol }}</div>
+                <div class="col text-white text-center fs-6">{{ m.cs2gol }}</div>
+                <div class="col text-white fs-6">{{ m.csapat2_nev }}</div>
+              </div>
+            </div>
+            <div class="col-12 mb-2 text-center">
+              <button (click)="torles('meccs', m.id)" class="btn ">
+                <img src="torles.svg" alt="Törlés" />
+              </button>
+              <button (click)="ModositasLenyitasmeccs(t.id, m.id); $event.stopPropagation();" class="btn">
+                <img src="modositas.svg" alt="Módosítás" />
+              </button>
+              <div *ngIf="modositandoMeccsId.get(t.id) === m.id">
+
+                <label>Csapat 1 Gól:</label>
+                <input type="number" [(ngModel)]="modositandomeccs.cs1gol" class="form-control bg-dark">
+
+                <label>Csapat 2 Gól:</label>
+                <input type="number" [(ngModel)]="modositandomeccs.cs2gol" class="form-control bg-dark">
+
+                <button (click)="modositasmeccs(t.id, m.id)" class="btn btn-success">Mentés</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

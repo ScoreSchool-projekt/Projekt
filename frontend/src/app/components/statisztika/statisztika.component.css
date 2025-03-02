@@ -1,0 +1,17 @@
+::ng-deep .ngx-charts text{
+    fill: aliceblue !important;
+    font-size: large;
+}
+
+::ng-deep .ngx-charts line{
+    stroke: white !important; /* Biztosítja, hogy mindig látható legyen */
+    stroke-width: 3px !important;
+    opacity: 1 !important;
+}
+
+option {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+

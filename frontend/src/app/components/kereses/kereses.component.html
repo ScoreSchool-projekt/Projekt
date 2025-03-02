@@ -1,0 +1,114 @@
+<nav class="navbar navbar-expand-lg">
+  <img src="logo.svg" alt="Logó" height="120rem" class="logok">
+  <a href="">
+    <h2>ScoreSchool</h2>
+  </a>
+  <button class="navbar-toggler" type="button" (click)="toggleMenu()" aria-label="Menü megnyitása/zárása">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" [class.show]="isMenuOpen">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="kereses">
+          <h5>Keresés</h5>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="adatkezeles">
+          <h5>Adatkezelés</h5>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="statisztika">
+          <h5>Statisztika</h5>
+        </a>
+      </li>
+    </ul>
+    <div class="d-flex justify-content-end w-100">
+      <button (click)="kijelentkezes()" class="border-0 bg-transparent text-end">
+        <img src="kijelentkezes.svg" height="50rem" class="pb-2">
+      </button>
+    </div>
+  </div>
+
+</nav>
+
+
+<div class="container kereses">
+  <form (ngSubmit)="Kereses()" class="mb-4">
+    <div class="row">
+      <div class="col-md-3">
+        <select [(ngModel)]="kivalasztottkategoria" name="kategoria" (change)="kiiras()" class="form-select fs-3 bg-dark">
+          <option *ngFor="let cat of kategoriak" [value]="cat">{{ cat }}</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <input type="text" id="keresett" [(ngModel)]="keresett" name="keresett" class="form-control fs-3 bg-dark" />
+      </div>
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-success w-100 fs-3">Keresés</button>
+      </div>
+    </div>
+  </form>
+
+  <h2 class="mt-1 fs-2">Találatok:</h2>
+  <div *ngIf="eredmenyek.length > 0">
+    <div *ngFor="let eredmeny of eredmenyek" class="result-box bg-dark text-light p-4 rounded my-2 fs-3">
+      
+      <ng-container *ngIf="kivalasztottkategoria === ''">
+        <div class="row text-center fw-bold border-bottom pb-2 fs-3">
+          <div class="col-3">Csapat 1</div>
+          <div class="col-3">Gólok</div>
+          <div class="col-3">Gólok</div>
+          <div class="col-3">Csapat 2</div>
+        </div>
+        <div class="row text-center pt-2 fs-5">
+          <div class="col-3">{{ eredmeny.csapat1_nev }}</div>
+          <div class="col">{{ eredmeny.cs1gol }}</div>
+          <div class="col">{{ eredmeny.cs2gol }}</div>
+          <div class="col-3">{{ eredmeny.csapat2_nev }}</div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="kivalasztottkategoria === 'torna'">
+        <div class="row">
+          <div class="col-12">
+            <h3 class="fw-bold fs-3">{{ eredmeny.tornaneve }}</h3>
+          </div>
+          <div class="col-md-6"><p class="fs-4">Év: {{ eredmeny.ev }}</p></div>
+          <div class="col-md-6"><p class="fs-4">Csoportok: {{ eredmeny.csoportokszama }}</p></div>
+          <div class="col-md-6"><p class="fs-4">Csapatok: {{ eredmeny.csapatokszama }}</p></div>
+          <div class="col-md-6"><p class="fs-4">Győztes: <strong>{{ eredmeny.gyoztescsapat }}</strong></p></div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="kivalasztottkategoria === 'csapat'">
+        <div class="row">
+          <div class="col-12">
+            <h3 class="fw-bold fs-3">{{ eredmeny.csapatneve }}</h3>
+          </div>
+          <div class="col-md-4"><p class="fs-4">Győzelmek: {{ eredmeny.gyozelmek }}</p></div>
+          <div class="col-md-4"><p class="fs-4">Vereségek: {{ eredmeny.veresegek }}</p></div>
+          <div class="col-md-4"><p class="fs-4">Döntetlenek: {{ eredmeny.dontetlenek }}</p></div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="kivalasztottkategoria === 'jatekos'">
+        <div class="row">
+          <div class="col-12">
+            <h3 class="fw-bold fs-3">{{ eredmeny.nev }}</h3>
+          </div>
+          <div class="col-md-6"><p class="fs-4">Csapat: {{ eredmeny.csapatNeve }}</p></div>
+          <div class="col-md-6"><p class="fs-4">Gólok száma: {{ eredmeny.golokszama }}</p></div>
+          <div class="col-md-6"><p class="fs-4">Sárga lapok: {{ eredmeny.sargalapok }}</p></div>
+          <div class="col-md-6"><p class="fs-4">Piros lapok: {{ eredmeny.piroslapok }}</p></div>
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+
+  <div *ngIf="eredmenyek.length === 0" class="text-muted fs-3">
+    <p class="fs-3">Nincs találat a keresési feltételeknek megfelelően.</p>
+  </div>
+</div>

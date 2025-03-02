@@ -1,0 +1,246 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+    height: 100%;
+    min-height: 100dvh; /* Dinamikus viewport magasság */
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: 'Lato', sans-serif !important;
+    background-image: url('/hatter2.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: aliceblue !important;
+    text-decoration: none !important;
+    height: 100dvh;
+}
+
+.kezdooldal {
+    background-color: rgba(0, 0, 0, 0.40);
+    backdrop-filter: blur(20px);
+    width: 100% !important;
+    margin: auto;
+    min-height: 100vh;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+h1, h2, h3,h4, h5,h6, a {
+    font-family: 'Poppins', sans-serif !important;
+    color: aliceblue !important;
+    text-decoration: none !important;
+}
+
+h1 {
+    font-size: 250% !important;
+    color: aliceblue !important;
+}
+
+.fo{
+    margin-top: -70px !important;
+}
+
+.funkciok {
+    background-color: rgba(0, 0, 0, 0.60);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    position: relative;
+    top: -20px;
+    margin-top: -100px !important;
+    padding: 40px 20px;
+}
+
+.funkcio {
+    padding-top: 5%;
+    text-align: center;
+    position: relative;
+    overflow: visible;
+}
+
+.funkcio img {
+    height: 125px;
+    width: 125px;
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.40);
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.focista img {
+    position: relative;
+    transform: translateY(-20%);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container {
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+.bejelentkezes {
+    width: 100% !important;
+    padding: 10px !important;
+    margin: 5px 0 !important;
+    border-radius: 5px !important;
+}
+
+.submit {
+    cursor: pointer;
+    border: none;
+}
+
+.logo {
+    width: 60% !important;
+}
+
+.text-justify {
+    text-align: justify;
+}
+span{
+    cursor:pointer;
+}
+
+.form-select, .option, input{
+    color: aliceblue !important;
+}
+
+
+
+@media (max-width: 1400px) {
+    h1 {
+        font-size: 220% !important;
+    }
+
+    body {
+        background-image: url('/hattermd.svg');
+    }
+
+    .text-justify {
+        font-size: 160% !important;
+    }
+
+    .col-6.text-end {
+        text-align: center !important;
+    }
+
+    .logo {
+        width: 60% !important;
+    }
+    .fo{
+        margin-top: -110px !important;
+    }
+}
+
+
+@media (max-width: 767px) {
+    h1 {
+        font-size: 200% !important;
+    }
+
+    h2 {
+        font-size: 180% !important;
+    }
+
+    p {
+        font-size: 160% !important;
+    }
+
+    .logo {
+        width: 80% !important;
+    }
+
+    .focista {
+        display: none;
+    }
+
+    .funkcio img {
+        display: none;
+    }
+    .funkciok{
+        margin-top: 10% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-container {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    .logo {
+        width: 100% !important;
+    }
+    body {
+        background-image: url('/hattersm.svg');
+    }
+
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px 30px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.tobbi-oldal{
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 30px;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center; /* Vízszintes középre igazítás */
+    align-items: center; /* Függőleges középre igazítás */
+}
+
+.kereses{
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 30px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+
+ .ngx-chart {
+    height: 500px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+.form-label{
+    text-align: justify !important;
+}

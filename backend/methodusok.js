@@ -13,7 +13,7 @@ const adatb = mysql.createConnection({
     host: '127.0.0.1',
     user: 'root',
     password: '',
-    database: 'scooreschool'
+    database: 'scoreschool'
 });
 
 adatb.connect((err) => {
@@ -30,7 +30,7 @@ app.get('/:tabla', (req, res) => {
     const lekerdezes = 'SELECT * FROM ?? ';
     adatb.query(lekerdezes, [tabla], (err, results) => {
         if (err) {
-            res.json({error: 'Sikertelen lekérdezés: ', err});
+            return  res.json({error: 'Sikertelen lekérdezés: ', err});
         }
         res.json(results);
     });
@@ -42,7 +42,7 @@ app.get('/:tabla/:id', (req, res) => {
     const lekerdezes = 'SELECT * FROM ?? WHERE id = ? ';
     adatb.query(lekerdezes, [tabla, id], (err, results) => {
         if (err) {
-            res.json({error: 'Sikertelen lekérdezés: ', err});
+            return res.json({error: 'Sikertelen lekérdezés: ', err});
         }
         res.json(results);
     });
@@ -55,9 +55,9 @@ app.post('/:tabla', (req, res) => {
     const lekerdezes = 'INSERT INTO ?? SET ? ';
     adatb.query(lekerdezes, [tabla, adatok], (err) => {
         if (err) {
-            res.json({error: 'Sikertelen lekérdezés: ', err});
+           return res.json({error: 'Sikertelen lekérdezés: ', err});
         }
-        res.send('Sikeresen feltöltötte az adatokat');
+        res.json('Sikeresen feltöltötte az adatokat');
     });
 });
 
@@ -68,7 +68,7 @@ app.put('/:tabla/:id', (req, res) => {
     const lekerdezes = 'UPDATE ?? SET ? WHERE id = ?';
     adatb.query(lekerdezes, [tabla, adat, id], (err) => {
         if (err) {
-            res.json({error: 'Sikertelen lekérdezés: ', err});
+            return res.json({error: 'Sikertelen lekérdezés: ', err});
         }
         res.send('Sikeresen módosította az adatot');
     })
@@ -80,7 +80,7 @@ app.delete('/:tabla/:id', (req, res) => {
     const lekerdezes = 'DELETE FROM ?? WHERE id = ?';
     adatb.query(lekerdezes, [tabla, id], (err) => {
         if (err) {
-            res.json({error: 'Sikertelen lekérdezés: ', err});
+            return res.json({error: 'Sikertelen lekérdezés: ', err});
         }
         res.send('Sikeresen törölte az adatot');
     })

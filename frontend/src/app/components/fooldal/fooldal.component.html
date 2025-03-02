@@ -1,0 +1,69 @@
+<div class="container-fluid kezdooldal rounded-4">
+  <div class="text-left w-25">
+    <img src="logo.svg" alt="Logó" title="Logó" class="logo" />
+  </div>
+  <div class="row p-5 fo">
+    <div class="col-lg-6 col-md-6 col-12 pb-1 text-center text-md-start">
+      <h1>ScoreSchool</h1>
+      <h2>Hozd ki a legtöbbet az iskolai fociból!</h2>
+      <h5 class="text-justify">
+        Tornák, mérkőzések, statisztikák – minden, amire egy iskolai bajnokság során szükség
+        van. Egyszerű, gyors és hatékony megoldás az edzők, játékosok és szervezők számára!
+      </h5>
+      <button class="btn btn-success fs-5" (click)="toggleModal()">
+        Gyere kezdjünk!
+      </button>
+    </div>
+    <div class="col-6 text-center d-sm-relative focista">
+      <img src="bicycle.png" class="img-fluid" />
+    </div>
+  </div>
+  <div class="row  mx-5 mb-1 text-center funkciok">
+    <div class="col-md-4 col-sm-4 funkcio">
+      <img src="jatek.svg" alt="proba" title="proba" />
+      <h4>Keresés</h4>
+      <h5>Találj meg gyorsan csapatokat és eredményeket.</h5>
+    </div>
+    <div class="col-md-4 col-sm-4 funkcio">
+      <img src="feltoltes.svg" alt="proba" title="proba" />
+      <h4>Adat mentés</h4>
+      <h5>Rögzítsd és tárold az adatokat egyszerűen.</h5>
+    </div>
+    <div class="col-md-4 col-sm-4 funkcio">
+      <img src="statisztika.svg" alt="proba" title="proba" />
+      <h4>Statisztika készítés</h4>
+      <h5>Elemezd a teljesítményt részletes statisztikákkal.</h5>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="isModalVisible" class="modal-overlay" (click)="closeModal()">
+  <div class="modal-container bg-dark" (click)="$event.stopPropagation()">
+    <h2 *ngIf="isLoginMode">Bejelentkezés</h2>
+    <h2 *ngIf="!isLoginMode">Regisztráció</h2>
+    <form class="form">
+      <div class="input-span" *ngIf="!isLoginMode">
+        <label for="nev" class="label">Felhasználónév</label>
+        <input type="text" id="nev" required class="bejelentkezes form-control fs-6 bg-dark " [(ngModel)]="nev" name="nev" />
+      </div>
+      <div class="input-span">
+        <label for="email" class="label">Email</label>
+        <input type="email" id="email" required class="bejelentkezes form-control fs-6 bg-dark " [(ngModel)]="email" name="email" />
+      </div>
+      <div class="input-span">
+        <label for="password" class="label">Jelszó</label>
+        <input type="password" id="password" required class="bejelentkezes form-control fs-6 bg-dark " [(ngModel)]="jelszo" name="password" />
+      </div>
+      <input class="submit btn btn-success" type="submit" [value]="isLoginMode ? 'Belépés' : 'Regisztráció'"
+        (click)="isLoginMode ? bejelentkezes() : regisztracio()" />
+      <div class="span">
+        <span (click)="switchMode()">
+          {{ isLoginMode ? 'Nincs még fiókod? Regisztráció' : 'Van már fiókod? Bejelentkezés' }}
+        </span>
+      </div>
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+      <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+    </form>
+  </div>
+</div>
