@@ -31,6 +31,7 @@ export class BejelentkezesService {
   }
   
 
+  // regisztráció
   regisztracio(nev: string, email: string, jelszo: string): Observable<any> {
     const ujfelhasznalo = {nev, email, jelszo };
     return this.http.post(`${this.apiUrl}/profil`, ujfelhasznalo);

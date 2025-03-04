@@ -8,6 +8,7 @@ import { KeresesComponent } from './components/kereses/kereses.component';
 import { AdatkezelesComponent } from './components/adatkezeles/adatkezeles.component';
 import { StatisztikaComponent } from './components/statisztika/statisztika.component';
 
+// ! Szükséges modulok
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -27,6 +28,7 @@ import { FooldalComponent } from './components/fooldal/fooldal.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    
     NgxChartsModule,
     FormsModule,
     CommonModule,

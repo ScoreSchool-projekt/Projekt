@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BejelentkezesService } from '../../services/bejelentkezes.service';
+//  Ahhoz, hogy lehessen átírányítani más oldalra
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,16 +20,19 @@ export class FooldalComponent {
 
   constructor(private authService: BejelentkezesService, private router: Router) {}
 
+  //  Bejelentkezes fül megnyitása/bezárása
   toggleModal() {
     this.isModalVisible = !this.isModalVisible;
   }
 
+  //  Átváltás bejelentkezésből regisztrációba
   switchMode() {
     this.isLoginMode = !this.isLoginMode;
     this.errorMessage = '';
     this.successMessage = '';
   }
-
+ 
+  // Bejelentkezes a service-t meghívva
   bejelentkezes() {
     this.authService.bejelentkezes(this.email, this.jelszo).subscribe({
       next: (user) => {
@@ -44,6 +48,7 @@ export class FooldalComponent {
     });
   }
 
+  // Regisztráció a service-t meghívva és, hogy minden mezőt meg kell hívni
   regisztracio() {
     if (!this.nev || !this.email || !this.jelszo) {
       this.errorMessage = 'Minden mezőt ki kell tölteni!';
@@ -63,7 +68,9 @@ export class FooldalComponent {
     });
   }
 
+  //  Bejelentkezés bezárása (ha mellé kattint)
   closeModal() {
     this.isModalVisible = false;
   }
+
 }
