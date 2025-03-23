@@ -43,7 +43,7 @@ export class AdatkezelesComponent implements OnInit {
       this.profil = user;
       this.tombokfeltoltese();
     } else {
-      console.error('Nincs bejelentkezett felhasználó!');
+      console.log('Nincs bejelentkezett felhasználó!');
     }
   }
 
@@ -282,7 +282,7 @@ export class AdatkezelesComponent implements OnInit {
 
   // a megadott elem alapján törölni tudunk bármiből, a helyi tömbökből is töröljük,
   // ha esetleg nem sikerül az oldal újra töltése
-  torles(elem: 'torna' | 'csapatok' | 'meccsek' | 'csoportok', id: number) {
+  torles(elem: 'torna' | 'csapat' | 'meccs' | 'csoport', id: number) {
     this.adatokService.delete(elem, id).subscribe({
       next: () => {
         alert(`${elem} sikeresen törölve!`);
@@ -290,13 +290,13 @@ export class AdatkezelesComponent implements OnInit {
           case 'torna':
             this.torna = this.torna.filter(t => t.id !== id);
             break;
-          case 'csapatok':
+          case 'csapat':
             this.csapat = this.csapat.filter(cs => cs.id !== id);
             break;
-          case 'meccsek':
+          case 'meccs':
             this.meccs = this.meccs.filter(m => m.id !== id);
             break;
-          case 'csoportok':
+          case 'csoport':
             this.meccs = this.meccs.filter(m => m.id !== id);
             break;
         }

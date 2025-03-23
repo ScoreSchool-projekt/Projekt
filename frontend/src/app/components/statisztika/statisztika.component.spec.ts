@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StatisztikaComponent } from './statisztika.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { AdatokService } from '../../services/adatok.service';
 
 describe('StatisztikaComponent', () => {
   let component: StatisztikaComponent;
@@ -8,7 +10,8 @@ describe('StatisztikaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StatisztikaComponent]
+      imports: [HttpClientTestingModule, StatisztikaComponent],
+      providers: [AdatokService]
     })
     .compileComponents();
 

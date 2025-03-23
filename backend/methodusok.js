@@ -30,7 +30,7 @@ app.get('/:tabla', (req, res) => {
     const lekerdezes = 'SELECT * FROM ?? ';
     adatb.query(lekerdezes, [tabla], (err, results) => {
         if (err) {
-            return  res.json({error: 'Sikertelen lekérdezés: ', err});
+            return res.json({error: 'Sikertelen lekérdezés: ', err});
         }
         res.json(results);
     });
@@ -86,8 +86,9 @@ app.delete('/:tabla/:id', (req, res) => {
     })
 });
 
-// *    S Z E R V E R
-const port = 3000;
-app.listen(port, () => {
-    console.log('A szerver fut: http://localhost:3000');
-});
+// *    K A P C S O L A T    L E Z A R A S A
+app.lezaras = () => {
+    adatb.end()
+};
+
+module.exports = app;
