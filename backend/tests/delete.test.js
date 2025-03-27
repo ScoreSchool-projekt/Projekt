@@ -5,7 +5,7 @@ afterAll(async () => {
     await app.lezaras();
 });
 
-describe('DELETE - adat törlás teszt', () => {
+describe('DELETE - adat törlés teszt', () => {
     it('DELETE /:tabla/:id - sikeres adattörlés', async () => {
         const res = await request(app).delete('/jatekos/1');
         expect(res.status).toBe(200);
