@@ -6,7 +6,7 @@ import { Observable, forkJoin } from 'rxjs';
   providedIn: 'root'
 })
 export class AdatokService {
-  //  url és egy tömb, ami atáblák neveit tárolja
+  //  url és egy tömb, ami a táblák neveit tárolja
   private apiUrl = 'http://localhost:3000';
   private tablak = ['profil', 'csapat', 'torna', 'jatekos', 'meccs', 'csoport'];
 

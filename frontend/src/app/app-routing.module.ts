@@ -6,11 +6,12 @@ import { KeresesComponent } from './components/kereses/kereses.component';
 import { AdatkezelesComponent } from './components/adatkezeles/adatkezeles.component';
 import { StatisztikaComponent } from './components/statisztika/statisztika.component';
 
+//  útvonalak
 const routes: Routes = [
 
   {path: "", component: FooldalComponent},
   {path: "kereses", component: KeresesComponent},
-  {path: "adatkezeles", component:AdatkezelesComponent},
+  {path: "adatkezeles", component: AdatkezelesComponent},
   {path: "statisztika", component: StatisztikaComponent}
 
 ];
