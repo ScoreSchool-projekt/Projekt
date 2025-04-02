@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0" version="26.1.3">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0" version="26.2.3">
   <diagram name="1 oldal" id="45SWZGfpTmhMQtiN2HCz">
-    <mxGraphModel dx="4734" dy="755" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="4728" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -345,7 +345,7 @@
         <mxCell id="PWvbE_PI87FFjgbpCW56-83" value="egy tornán&lt;div&gt;több&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;csoport is&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;részt vehet&lt;/span&gt;&lt;/div&gt;" style="rhombus;strokeWidth=1;fontStyle=1;fontSize=18;verticalAlign=middle;whiteSpace=wrap;html=1;horizontal=1;fontFamily=Times New Roman;align=center;" parent="1" vertex="1">
           <mxGeometry x="-2220" y="300" width="200" height="175" as="geometry" />
         </mxCell>
-        <mxCell id="PWvbE_PI87FFjgbpCW56-84" value="egy csapat több&lt;div&gt;tornán is résztvehet&lt;/div&gt;" style="rhombus;strokeWidth=1;fontStyle=1;fontSize=18;verticalAlign=middle;whiteSpace=wrap;html=1;horizontal=1;fontFamily=Times New Roman;align=center;" parent="1" vertex="1">
+        <mxCell id="PWvbE_PI87FFjgbpCW56-84" value="egy csapat&lt;div&gt;több&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;tornán is&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;résztvehet,&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;egy tornán több&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;csapat is&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;játszik&lt;/span&gt;&lt;/div&gt;" style="rhombus;strokeWidth=1;fontStyle=1;fontSize=18;verticalAlign=middle;whiteSpace=wrap;html=1;horizontal=1;fontFamily=Times New Roman;align=center;" parent="1" vertex="1">
           <mxGeometry x="-2248" y="505" width="200" height="175" as="geometry" />
         </mxCell>
         <mxCell id="PWvbE_PI87FFjgbpCW56-85" value="n" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=18;fontFamily=Times New Roman;" parent="1" vertex="1">
@@ -467,7 +467,7 @@
             <mxPoint x="-2328" y="550" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="eKnDjKVCo1M3a6YPKCMk-30" value="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1;fontFamily=Times New Roman;" parent="1" vertex="1">
+        <mxCell id="eKnDjKVCo1M3a6YPKCMk-30" value="n" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1;fontFamily=Times New Roman;" parent="1" vertex="1">
           <mxGeometry x="-2358" y="780" width="30" height="40" as="geometry" />
         </mxCell>
         <mxCell id="eKnDjKVCo1M3a6YPKCMk-31" value="n" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1;fontFamily=Times New Roman;" parent="1" vertex="1">
