@@ -113,7 +113,7 @@ export default function TabOneScreen() {
   );
 }
 
-// STÍLUSOK
+
 const styles = StyleSheet.create({
   background: {
     flex: 1,

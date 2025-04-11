@@ -1,12 +1,12 @@
 import axios from "axios";
-const API_URL = 'http://sajatipcim:3000/profil';  // Módosított URL
+const API_URL = 'http://sajatipcim:3000/profil';
 
 export const bejelentkezes = async (email, jelszo) => {
   try {
     const response = await fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password: jelszo }), // Egységes változónév
+      body: JSON.stringify({ email, password: jelszo }),
     });
 
     const data = await response.json();
@@ -15,7 +15,7 @@ export const bejelentkezes = async (email, jelszo) => {
       throw new Error(data.error || 'Hibás bejelentkezési adatok');
     }
 
-    return data; // A sikeres bejelentkezésnél visszaadjuk a felhasználó adatait
+    return data;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -23,7 +23,7 @@ export const bejelentkezes = async (email, jelszo) => {
 
 export const regisztracio = async (adatok) => {
   try {
-    const response = await axios.post(API_URL, adatok);  // Fix: apiUrl -> API_URL
+    const response = await axios.post(API_URL, adatok);
     return response.data;
   } catch (error) {
     console.error('Hiba történt a regisztrációnál:', error);

@@ -27,14 +27,14 @@ export default function Explore() {
 
   useEffect(() => {
     Kereses();
-  }, [keresett, kivalasztottKategoria]);  // Automatikus keresés, ha változik az input vagy a kategória
+  }, [keresett, kivalasztottKategoria]);
 
 
 
   const tombokFeltoltese = async () => {
     try {
       const [profilData, csapatData, tornaData, jatekosData, meccsData, csoportData] = await getMindenTabla();
-      console.log("Torna adatok:", tornaData);  // <-- Itt ellenőrizheted az adatokat
+      console.log("Torna adatok:", tornaData);
       const meccsAdatok = meccsData.map(meccs => ({
         ...meccs,
         hazaiCsapat: csapatData.find(c => c.id === meccs.csapat1)?.csapatneve || 'Ismeretlen',
